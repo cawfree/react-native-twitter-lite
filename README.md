@@ -9,9 +9,9 @@ A tiny, full-featured, modern client / server library for the [Twitter API](http
 - Promise driven via Async / Await
 - REST and Stream support
 - [Typescript support](https://github.com/draftbit/twitter-lite/blob/master/index.d.ts)
-- Works both in Node and in browsers
+- Works in Node, browsers, Android and iOS.
+  - No browserify needed.
 - Rate limiting support
-- Under 1kb
 - Minimal dependencies
 - Test suite
 
