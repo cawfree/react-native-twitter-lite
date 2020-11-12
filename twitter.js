@@ -1,7 +1,9 @@
-const crypto = require('crypto');
 const OAuth = require('oauth-1.0a');
 const Fetch = require('cross-fetch');
+const { KJUR } = require('jsrsasign');
+const { encode: btoa } = require('base-64');
 const querystring = require('querystring');
+
 const Stream = require('./stream');
 
 const getUrl = (subdomain, endpoint = '1.1') =>
@@ -12,10 +14,9 @@ const createOauthClient = ({ key, secret }) => {
     consumer: { key, secret },
     signature_method: 'HMAC-SHA1',
     hash_function(baseString, key) {
-      return crypto
-        .createHmac('sha1', key)
-        .update(baseString)
-        .digest('base64');
+      const mac = new KJUR.crypto.Mac({ alg: 'HmacSHA1', pass: key });
+      mac.updateString(baseString);
+      return btoa(new Buffer(mac.doFinal(), 'hex').toString('latin1'));
     },
   });
 

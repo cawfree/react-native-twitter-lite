@@ -1,5 +1,5 @@
 {
-  "name": "twitter-lite",
+  "name": "react-native-twitter-lite",
   "version": "0.14.0",
   "description": "Tiny, full-featured client/server REST/stream library for the Twitter API",
   "source": "twitter.js",
@@ -28,8 +28,12 @@
     "twitter stream"
   ],
   "dependencies": {
+    "base-64": "^1.0.0",
     "cross-fetch": "^3.0.0",
-    "oauth-1.0a": "^2.2.4"
+    "events": "^3.2.0",
+    "jsrsasign": "^10.0.5",
+    "oauth-1.0a": "^2.2.4",
+    "querystring": "^0.2.0"
   },
   "devDependencies": {
     "@types/jest": "^25.2.1",
@@ -47,7 +51,7 @@
   "scripts": {
     "lint": "eslint --fix ./",
     "prepare": "microbundle {stream,twitter}.js && bundlesize",
-    "test": "eslint --fix . && jest --detectOpenHandles",
+    "test": "jest",
     "release": "npm run -s prepare && npm test && git tag $npm_package_version && git push && git push --tags && npm publish"
   },
   "husky": {
